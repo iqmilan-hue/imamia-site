@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imamia | Community &amp; Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #10182b;
+    --night-deep: #0a0f1e;
+    --brass: #b8935a;
+    --brass-light: #d9b378;
+    --parchment: #f6f2ea;
+    --slate: #5b6478;
+    --line: rgba(184,147,90,0.28);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--parchment);
+    color:var(--night);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+
+  h1,h2,h3{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- Arch motif (signature element) ---------- */
+  .arch{
+    width:64px;
+    height:96px;
+    border:2px solid var(--brass);
+    border-bottom:none;
+    border-radius:32px 32px 0 0;
+    margin:0 auto;
+  }
+  .arch.small{width:36px;height:52px;border-radius:18px 18px 0 0;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 6vw;
+    background:rgba(16,24,43,0.92);
+    backdrop-filter:blur(6px);
+  }
+  nav .brand{
+    font-family:'Amiri', serif;
+    font-size:1.3rem;
+    color:var(--parchment);
+    letter-spacing:0.04em;
+  }
+  nav .brand span{color:var(--brass-light);}
+  nav ul{
+    display:flex;
+    gap:2.4rem;
+    list-style:none;
+  }
+  nav ul li a{
+    color:var(--parchment);
+    font-size:0.92rem;
+    letter-spacing:0.03em;
+    opacity:0.85;
+    transition:opacity 0.2s;
+  }
+  nav ul li a:hover{opacity:1;color:var(--brass-light);}
+  .nav-toggle{display:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(180deg, var(--night-deep) 0%, var(--night) 70%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 6vw 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:40%;
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0, transparent calc(12.5% - 1px),
+        var(--line) calc(12.5% - 1px), var(--line) 12.5%);
+    opacity:0.5;
+    mask-image:linear-gradient(180deg, transparent, black 60%);
+  }
+  .hero-arch{
+    width:120px;
+    height:170px;
+    border:2px solid var(--brass);
+    border-bottom:none;
+    border-radius:60px 60px 0 0;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:26px;
+    margin-bottom:2.2rem;
+    position:relative;
+    z-index:1;
+  }
+  .hero-arch span{
+    font-family:'Amiri', serif;
+    color:var(--brass-light);
+    font-size:1.6rem;
+  }
+  .hero h1{
+    color:var(--parchment);
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    max-width:16ch;
+    position:relative;
+    z-index:1;
+  }
+  .hero .eyebrow{
+    color:var(--brass-light);
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.78rem;
+    margin-bottom:1.4rem;
+    position:relative;
+    z-index:1;
+  }
+  .hero p.lede{
+    color:rgba(246,242,234,0.72);
+    max-width:46ch;
+    margin:1.6rem auto 2.4rem;
+    font-size:1.05rem;
+    position:relative;
+    z-index:1;
+  }
+  .btn{
+    display:inline-block;
+    border:1px solid var(--brass);
+    color:var(--brass-light);
+    padding:0.85rem 2.2rem;
+    font-size:0.88rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    transition:all 0.25s;
+    position:relative;
+    z-index:1;
+  }
+  .btn:hover{background:var(--brass);color:var(--night-deep);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:110px 6vw;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 4rem;
+  }
+  .section-head .eyebrow{
+    color:var(--brass);
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.76rem;
+    display:block;
+    margin-bottom:1rem;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+    margin-bottom:1.2rem;
+  }
+  .section-head p{color:var(--slate);font-size:1.02rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--parchment);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    max-width:1040px;
+    margin:0 auto;
+    align-items:start;
+  }
+  .about-grid .arch-wrap{
+    display:flex;
+    justify-content:center;
+    padding-top:1rem;
+  }
+  .about-grid p{
+    color:var(--slate);
+    margin-bottom:1.2rem;
+    font-size:1.02rem;
+  }
+  .about-grid strong{color:var(--night);}
+
+  /* ---------- Events ---------- */
+  .events{background:var(--night-deep);}
+  .events .section-head p{color:rgba(246,242,234,0.6);}
+  .events .section-head h2{color:var(--parchment);}
+  .events .section-head .eyebrow{color:var(--brass-light);}
+
+  .event-list{
+    max-width:800px;
+    margin:0 auto;
+    border-top:1px solid var(--line);
+  }
+  .event{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:2rem;
+    padding:2.2rem 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .event .date{
+    font-family:'Amiri', serif;
+    color:var(--brass-light);
+  }
+  .event .date .day{font-size:2.2rem;line-height:1;display:block;}
+  .event .date .month{font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(246,242,234,0.55);}
+  .event h3{color:var(--parchment);font-size:1.3rem;margin-bottom:0.5rem;}
+  .event .meta{
+    color:var(--brass-light);
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    margin-bottom:0.6rem;
+  }
+  .event p{color:rgba(246,242,234,0.65);font-size:0.96rem;max-width:52ch;}
+
+  /* ---------- Footer / Contact ---------- */
+  footer{
+    background:var(--night);
+    color:rgba(246,242,234,0.7);
+    text-align:center;
+    padding:70px 6vw 50px;
+  }
+  footer .arch.small{margin-bottom:1.4rem;}
+  footer h3{color:var(--parchment);font-size:1.4rem;margin-bottom:0.6rem;}
+  footer p{font-size:0.95rem;margin-bottom:1.6rem;}
+  footer .contact-line{
+    display:flex;
+    gap:2.4rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    font-size:0.9rem;
+    color:var(--brass-light);
+    margin-bottom:2.4rem;
+  }
+  footer .fine{
+    font-size:0.78rem;
+    color:rgba(246,242,234,0.4);
+    border-top:1px solid var(--line);
+    padding-top:1.8rem;
+  }
+
+  @media (max-width: 760px){
+    nav ul{display:none;}
+    .about-grid{grid-template-columns:1fr;gap:2.4rem;}
+    .about-grid .arch-wrap{display:none;}
+    .event{grid-template-columns:70px 1fr;gap:1.2rem;}
+    .event .date .day{font-size:1.6rem;}
+    section{padding:80px 6vw;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Imamia<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">Welcome</span>
+  <div class="hero-arch"><span>ﷲ</span></div>
+  <h1>A gathering place for our community</h1>
+  <p class="lede">Imamia shares information about who we are and brings our community together — majalis, gatherings, and announcements, all in one place.</p>
+  <a href="#events" class="btn">See Upcoming Events</a>
+</header>
+
+<section class="about" id="about">
+  <div class="section-head">
+    <span class="eyebrow">About Us</span>
+    <h2>Who we are</h2>
+    <p>A short introduction to your community, mission, and purpose.</p>
+  </div>
+  <div class="about-grid">
+    <div class="arch-wrap"><div class="arch"></div></div>
+    <div>
+      <p><strong>Imamiyyah Welfare Organization</strong> è un'associazione di promozione sociale e culturale, apartitica e senza scopo di lucro, con sede legale a Trezzano sul Naviglio. Nasce per favorire l'integrazione della comunità pakistana e asiatica in Italia, promuovendo formazione, lingua, cultura e diritti civili.</p>
+      <p>Le nostre finalità includono il sostegno scolastico e la formazione permanente, l'insegnamento della lingua Urdu e italiana ai più giovani, e la promozione di attività culturali, artistiche e sportive che valorizzano le tradizioni d'origine mantenendo un percorso di integrazione con il territorio.</p>
+      <p>Ci impegniamo per il riconoscimento dei diritti civili e umani, contro ogni forma di discriminazione, e lavoriamo per rafforzare il dialogo e la fratellanza tra la nostra comunità e i cittadini locali, attraverso lo scambio culturale e la collaborazione con altre associazioni ed enti.</p>
+      <p>L'associazione è amministrata da un'Assemblea dei Soci e da un Consiglio Direttivo, guidati da un Presidente, secondo lo statuto depositato presso l'Agenzia delle Entrate di Milano.</p>
+    </div>
+  </div>
+</section>
+
+<section class="events" id="events">
+  <div class="section-head">
+    <span class="eyebrow">Announcements</span>
+    <h2>Upcoming events</h2>
+    <p>Stay informed about our gatherings, majalis, and community programs.</p>
+  </div>
+  <div class="event-list">
+    <div class="event">
+      <div class="date"><span class="day">14</span><span class="month">Aug</span></div>
+      <div>
+        <h3>Event Title Here</h3>
+        <div class="meta">7:00 PM &middot; Community Hall</div>
+        <p>Short description of the event — what it is, who it's for, and any details attendees should know.</p>
+      </div>
+    </div>
+    <div class="event">
+      <div class="date"><span class="day">02</span><span class="month">Sep</span></div>
+      <div>
+        <h3>Event Title Here</h3>
+        <div class="meta">6:30 PM &middot; Imamia Center</div>
+        <p>Short description of the event — what it is, who it's for, and any details attendees should know.</p>
+      </div>
+    </div>
+    <div class="event">
+      <div class="date"><span class="day">21</span><span class="month">Sep</span></div>
+      <div>
+        <h3>Event Title Here</h3>
+        <div class="meta">All Day &middot; Location</div>
+        <p>Short description of the event — what it is, who it's for, and any details attendees should know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="arch small"></div>
+  <h3>Get in touch</h3>
+  <p>Have a question, or want your event listed here?</p>
+  <div class="contact-line">
+    <span>email@imamia.org</span>
+    <span>+00 000 0000</span>
+    <span>City, Country</span>
+  </div>
+  <div class="fine">&copy; 2026 Imamia. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
