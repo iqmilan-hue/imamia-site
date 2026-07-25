@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imamia | Community &amp; Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #10182b;
+    --night-deep: #0a0f1e;
+    --brass: #b8935a;
+    --brass-light: #d9b378;
+    --parchment: #f6f2ea;
+    --slate: #5b6478;
+    --line: rgba(184,147,90,0.28);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--parchment);
+    color:var(--night);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+
+  h1,h2,h3{
+    font-family:'Amiri', serif;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- Arch motif (signature element) ---------- */
+  .arch{
+    width:64px;
+    height:96px;
+    border:2px solid var(--brass);
+    border-bottom:none;
+    border-radius:32px 32px 0 0;
+    margin:0 auto;
+  }
+  .arch.small{width:36px;height:52px;border-radius:18px 18px 0 0;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 3vw;
+    background:rgba(16,24,43,0.96);
+    backdrop-filter:blur(6px);
+    flex-wrap:wrap;
+    gap:0.4rem;
+  }
+  nav .brand{
+    font-family:'Amiri', serif;
+    font-size:1rem;
+    color:var(--parchment);
+    letter-spacing:0.04em;
+    white-space:nowrap;
+    order:1;
+  }
+  nav .brand span{color:var(--brass-light);}
+  nav ul{
+    display:flex;
+    gap:0.6rem;
+    list-style:none;
+    order:3;
+    width:100%;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  nav ul li a{
+    color:var(--parchment);
+    font-size:0.75rem;
+    letter-spacing:0.02em;
+    opacity:0.85;
+    transition:opacity 0.2s;
+    white-space:nowrap;
+    padding:0.3rem 0.4rem;
+  }
+  nav ul li a:hover{opacity:1;color:var(--brass-light);}
+  .nav-toggle{display:none;}
+  
+  .nav-donate-btn{
+    background:var(--brass);
+    color:var(--night-deep);
+    border:none;
+    padding:0.45rem 0.8rem;
+    font-size:0.7rem;
+    letter-spacing:0.02em;
+    font-weight:500;
+    border-radius:3px;
+    cursor:pointer;
+    transition:all 0.2s;
+    text-transform:uppercase;
+    font-family:'Work Sans', sans-serif;
+    white-space:nowrap;
+  }
+  .nav-donate-btn:hover{
+    background:var(--brass-light);
+    transform:scale(1.05);
+  }
+
+  .lang-switch{
+    display:flex;
+    gap:0.2rem;
+    order:2;
+    margin-left:auto;
+  }
+  .lang-switch button{
+    background:none;
+    border:1px solid var(--line);
+    color:rgba(246,242,234,0.7);
+    font-family:'Work Sans', sans-serif;
+    font-size:0.65rem;
+    letter-spacing:0.02em;
+    padding:0.25rem 0.4rem;
+    cursor:pointer;
+    transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .lang-switch button:hover{color:var(--parchment);border-color:var(--brass);}
+  .lang-switch button.active{
+    background:var(--brass);
+    border-color:var(--brass);
+    color:var(--night-deep);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(180deg, var(--night-deep) 0%, var(--night) 70%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 6vw 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:40%;
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0, transparent calc(12.5% - 1px),
+        var(--line) calc(12.5% - 1px), var(--line) 12.5%);
+    opacity:0.5;
+    mask-image:linear-gradient(180deg, transparent, black 60%);
+  }
+  .hero-arch{
+    width:120px;
+    height:170px;
+    border:none;
+    border-radius:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    margin-bottom:2.2rem;
+    position:relative;
+    z-index:1;
+    background:transparent;
+  }
+  .hero-arch img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  .hero-arch span{
+    display:none;
+  }
+  .hero h1{
+    color:var(--parchment);
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    max-width:16ch;
+    position:relative;
+    z-index:1;
+  }
+  .hero .eyebrow{
+    color:var(--brass-light);
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.78rem;
+    margin-bottom:1.4rem;
+    position:relative;
+    z-index:1;
+  }
+  .hero p.lede{
+    color:rgba(246,242,234,0.72);
+    max-width:46ch;
+    margin:1.6rem auto 2.4rem;
+    font-size:1.05rem;
+    position:relative;
+    z-index:1;
+  }
+  .btn{
+    display:inline-block;
+    border:1px solid var(--brass);
+    color:var(--brass-light);
+    padding:0.85rem 2.2rem;
+    font-size:0.88rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    transition:all 0.25s;
+    position:relative;
+    z-index:1;
+  }
+  .btn:hover{background:var(--brass);color:var(--night-deep);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:110px 6vw;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 4rem;
+  }
+  .section-head .eyebrow{
+    color:var(--brass);
+    text-transform:uppercase;
+    letter-spacing:0.28em;
+    font-size:0.76rem;
+    display:block;
+    margin-bottom:1rem;
+  }
+  .section-head h2{
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+    margin-bottom:1.2rem;
+  }
+  .section-head p{color:var(--slate);font-size:1.02rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--parchment);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    max-width:1040px;
+    margin:0 auto;
+    align-items:start;
+  }
+  .about-grid .arch-wrap{
+    display:flex;
+    justify-content:center;
+    padding-top:1rem;
+  }
+  .about-grid p{
+    color:var(--slate);
+    margin-bottom:1.2rem;
+    font-size:1.02rem;
+  }
+  .about-grid strong{color:var(--night);}
+
+  /* ---------- Events ---------- */
+  .events{background:var(--night-deep);}
+  .events .section-head p{color:rgba(246,242,234,0.6);}
+  .events .section-head h2{color:var(--parchment);}
+  .events .section-head .eyebrow{color:var(--brass-light);}
+
+  .event-list{
+    max-width:800px;
+    margin:0 auto;
+    border-top:1px solid var(--line);
+  }
+  .event{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:2rem;
+    padding:2.2rem 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .event .date{
+    font-family:'Amiri', serif;
+    color:var(--brass-light);
+  }
+  .event .date .day{font-size:2.2rem;line-height:1;display:block;}
+  .event .date .month{font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(246,242,234,0.55);}
+  .event h3{color:var(--parchment);font-size:1.3rem;margin-bottom:0.5rem;}
+  .event .meta{
+    color:var(--brass-light);
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    margin-bottom:0.6rem;
+  }
+  .event p{color:rgba(246,242,234,0.65);font-size:0.96rem;max-width:52ch;}
+
+  /* ---------- Footer / Contact ---------- */
+  footer{
+    background:var(--night);
+    color:rgba(246,242,234,0.7);
+    text-align:center;
+    padding:70px 6vw 50px;
+  }
+  footer .arch.small{margin-bottom:1.4rem;}
+  footer h3{color:var(--parchment);font-size:1.4rem;margin-bottom:0.6rem;}
+  footer p{font-size:0.95rem;margin-bottom:1.6rem;}
+  footer .contact-line{
+    display:flex;
+    gap:2.4rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    font-size:0.9rem;
+    color:var(--brass-light);
+    margin-bottom:2.4rem;
+  }
+  footer .fine{
+    font-size:0.78rem;
+    color:rgba(246,242,234,0.4);
+    border-top:1px solid var(--line);
+    padding-top:1.8rem;
+  }
+
+  @media (max-width: 760px){
+    nav{padding:10px 2vw;}
+    nav .brand{font-size:0.9rem;}
+    nav ul{gap:0.4rem;flex-wrap:wrap;width:100%;}
+    nav ul li a{font-size:0.7rem;padding:0.25rem 0.3rem;}
+    .nav-donate-btn{padding:0.4rem 0.7rem;font-size:0.65rem;}
+    .lang-switch{gap:0.15rem;}
+    .lang-switch button{padding:0.2rem 0.35rem;font-size:0.6rem;border:0.5px solid var(--line);}
+    
+    .hero{
+      min-height:auto;
+      height:auto;
+      padding:70px 4vw 35px;
+    }
+    .hero-arch{width:70px;height:105px;margin-bottom:1rem;padding-bottom:18px;}
+    .hero h1{font-size:clamp(1.5rem, 5vw, 2.2rem);max-width:90%;}
+    .hero .eyebrow{font-size:0.65rem;margin-bottom:0.6rem;}
+    .hero p.lede{font-size:0.9rem;margin:0.8rem auto 1.2rem;}
+    .btn{padding:0.6rem 1.4rem;font-size:0.75rem;}
+
+    .hussain-cover{height:350px;margin-top:0;}
+    .hussain-content h2{font-size:1.4rem;margin-bottom:0.6rem;color:#fff;}
+    .hussain-content p{font-size:0.9rem;margin-bottom:1.2rem;color:#fff;}
+    .hussain-content blockquote{font-size:1rem;color:#fff;padding-left:1rem;border-left:2px solid var(--brass);}
+    .lineage-scroll{padding:0.6rem 0;margin-top:1rem;}
+    .name{font-size:0.65rem;padding:0.2rem 0.4rem;}
+    .separator{font-size:0.8rem;}
+
+    section{padding:50px 4vw;}
+    .section-head h2{font-size:clamp(1.3rem, 4vw, 1.8rem);}
+    .section-head p{font-size:0.85rem;}
+
+    .about-grid{grid-template-columns:1fr;gap:1.4rem;}
+    .about-grid .arch-wrap{display:none;}
+    .about-grid p{font-size:0.9rem;}
+
+    .prayer-grid{grid-template-columns:repeat(2, 1fr);gap:0.6rem;margin:1.4rem auto;}
+    .prayer-card{padding:0.8rem;border-radius:6px;}
+    .prayer-name{font-size:0.75rem;margin-bottom:0.3rem;}
+    .prayer-time{font-size:1.1rem;}
+    .prayer-info{font-size:0.8rem;margin-top:1rem;}
+
+    .event{grid-template-columns:50px 1fr;gap:0.6rem;padding:0.8rem 0;}
+    .event .date .day{font-size:1.3rem;}
+    .event .date .month{font-size:0.7rem;}
+    .event h3{font-size:0.95rem;margin-bottom:0.2rem;}
+    .event .meta{font-size:0.72rem;margin-bottom:0.3rem;}
+    .event p{font-size:0.82rem;}
+
+    .faq-question{font-size:0.9rem;padding:0.8rem;}
+    .faq-answer.active{padding:0.8rem;}
+
+    .donation-modal-content{padding:1.4rem;max-width:90vw;}
+    .donation-modal h2{font-size:1.3rem;margin-bottom:0.7rem;}
+    .donation-modal p{font-size:0.8rem;}
+    .donation-detail{padding:0.7rem;}
+    .donation-detail-value{font-size:0.9rem;}
+    .copy-btn{padding:0.4rem 0.8rem;font-size:0.68rem;}
+
+    .hussain-quotes{height:70px;}
+    .quote-slide{font-size:0.85rem;}
+    .quote-dots{gap:0.4rem;}
+    .dot{width:8px;height:8px;}
+
+    footer{padding:40px 4vw 30px;}
+    footer img{width:40px;}
+    footer h3{font-size:1rem;}
+    footer p{font-size:0.85rem;}
+    footer .contact-line{flex-direction:column;gap:0.6rem;font-size:0.75rem;}
+    footer .fine{font-size:0.7rem;}
+  }
+
+  @media (max-width: 500px){
+    nav{padding:10px 3vw;}
+    nav .brand{font-size:0.9rem;}
+    nav ul{gap:0.5rem;}
+    .hero{padding:60px 3vw 30px;}
+    .hero-arch{width:60px;height:90px;}
+    .hero h1{font-size:clamp(1.3rem, 5vw, 2rem);}
+    .hussain-cover{height:240px;}
+    section{padding:40px 3vw;}
+    .prayer-grid{grid-template-columns:1fr;}
+    .prayer-card{padding:0.7rem;}
+    .prayer-time{font-size:1rem;}
+    .event{grid-template-columns:45px 1fr;}
+    .event .date .day{font-size:1.1rem;}
+    footer{padding:35px 3vw 25px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  /* ---------- Language switcher ---------- */
+  .lang-switch{
+    display:flex;
+    gap:0.4rem;
+    margin-left:2rem;
+  }
+  .lang-switch button{
+    background:none;
+    border:1px solid var(--line);
+    color:rgba(246,242,234,0.7);
+    font-family:'Work Sans', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    padding:0.35rem 0.7rem;
+    cursor:pointer;
+    transition:all 0.2s;
+  }
+  .lang-switch button:hover{color:var(--parchment);border-color:var(--brass);}
+  .lang-switch button.active{
+    background:var(--brass);
+    border-color:var(--brass);
+    color:var(--night-deep);
+  }
+
+  /* ---------- RTL / Urdu support ---------- */
+  html[dir="rtl"] body{font-family:'Noto Nastaliq Urdu', serif;}
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3{font-family:'Noto Nastaliq Urdu', serif;}
+  html[dir="rtl"] .eyebrow{letter-spacing:0.05em;}
+  html[dir="rtl"] .lang-switch{margin-left:0;margin-right:2rem;}
+  html[dir="rtl"] .event .date,
+  html[dir="rtl"] .event .meta{direction:ltr;text-align:right;}
+
+  @media (max-width: 760px){
+    /* Hero Section - Reduce for mobile */
+    .hero{
+      min-height:auto;
+      height:auto;
+      padding:100px 4vw 60px;
+    }
+    
+    /* Hero Arch Logo */
+    .hero-arch{
+      width:80px;
+      height:110px;
+      margin-bottom:1.6rem;
+    }
+    .hero-arch img{width:60px;height:auto;}
+    
+    /* Hero Heading */
+    .hero h1{font-size:clamp(1.8rem, 5vw, 2.6rem);}
+    .hero .lede{font-size:0.95rem;}
+    
+    /* Navigation */
+    nav{padding:16px 4vw;}
+    nav ul{gap:1.2rem;}
+    nav ul li a{font-size:0.8rem;}
+    .nav-donate-btn{padding:0.5rem 1rem;font-size:0.75rem;}
+    .lang-switch{gap:0.3rem;}
+    .lang-switch button{padding:0.3rem 0.5rem;font-size:0.7rem;}
+    
+    /* All Sections */
+    section{padding:60px 4vw;}
+    .section-head{margin-bottom:2rem;}
+    .section-head h2{font-size:1.6rem;}
+    .section-head p{font-size:0.9rem;}
+    
+    /* About Grid */
+    .about-grid{gap:1.6rem;}
+    .about-grid .arch-wrap{display:none;}
+    .about-grid p{font-size:0.95rem;}
+    
+    /* Events */
+    .event{
+      grid-template-columns:60px 1fr;
+      gap:1rem;
+    }
+    .event .date .day{font-size:1.4rem;}
+    .event .date .month{font-size:0.75rem;}
+    .event h3{font-size:1.1rem;}
+    .event .meta{font-size:0.8rem;}
+    .event p{font-size:0.9rem;}
+    
+    /* Prayer Times */
+    .prayer-grid{
+      grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+      gap:0.8rem;
+      margin:1.6rem auto;
+    }
+    .prayer-card{padding:1rem;}
+    .prayer-name{font-size:0.8rem;}
+    .prayer-time{font-size:1.2rem;}
+    .prayer-info{font-size:0.85rem;}
+    
+    /* FAQ */
+    .faq-list{margin:1.6rem auto;}
+    .faq-item{margin-bottom:0.8rem;}
+    .faq-question{
+      font-size:0.9rem;
+      padding:0.9rem;
+    }
+    .faq-answer.active{padding:0.9rem;}
+    
+    /* Footer */
+    footer{padding:50px 4vw 35px;}
+    footer h3{font-size:1.2rem;}
+    footer p{font-size:0.9rem;}
+    .contact-line{
+      flex-direction:column;
+      gap:0.8rem;
+      font-size:0.85rem;
+    }
+    .fine{font-size:0.75rem;}
+    
+    /* Donation Modal */
+    .donation-modal-content{
+      max-width:90%;
+      padding:1.6rem;
+    }
+    .donation-modal h2{font-size:1.5rem;}
+    .donation-modal p{font-size:0.9rem;}
+    .donation-detail{padding:0.8rem;}
+    .donation-detail-value{font-size:0.95rem;}
+    .copy-btn{padding:0.4rem 0.8rem;font-size:0.75rem;}
+    
+    /* Hussain Cover */
+    .hussain-cover{height:300px;}
+    .hussain-content h2{font-size:1.4rem;}
+    .hussain-content p{font-size:0.95rem;}
+    .quote-slide{font-size:1rem;}
+    .lineage-scroll{padding:0.8rem 0;}
+    .name{font-size:0.75rem;padding:0.25rem 0.5rem;}
+    .separator{font-size:1rem;}
+    
+    /* Hide long text on mobile */
+    .hero .lede{max-width:100%;}
+  }
+
+  /* ---------- Imam Hussain Cover ---------- */
+  .hussain-cover{
+    position:relative;
+    height:500px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    margin-top:0;
+  }
+  .hussain-bg{
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    z-index:1;
+  }
+  .hussain-overlay{
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background:linear-gradient(135deg, rgba(10,15,30,0.65) 0%, rgba(16,24,43,0.75) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+  }
+  .hussain-content{
+    text-align:center;
+    max-width:600px;
+    padding:2rem;
+    color:var(--parchment);
+  }
+  .hussain-content h2{
+    font-size:1.9rem;
+    margin-bottom:0.8rem;
+    color:#fff;
+    text-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+  .hussain-content p{
+    font-size:1rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#fff;
+    margin-bottom:1.8rem;
+    text-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+  .hussain-content blockquote{
+    font-family:'Amiri', serif;
+    font-size:1.2rem;
+    font-style:italic;
+    line-height:1.7;
+    color:#fff;
+    border-left:3px solid var(--brass);
+    padding-left:1.2rem;
+    margin-bottom:2rem;
+    text-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ---------- Lineage Scroll Inside Cover ---------- */
+  .lineage-scroll{
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    margin-top:2rem;
+    padding:1.2rem 0;
+    border-top:1px solid rgba(184,147,90,0.3);
+    border-bottom:1px solid rgba(184,147,90,0.3);
+  }
+  .lineage-names{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.8rem;
+    animation:slideLineage 30s linear infinite;
+    white-space:nowrap;
+  }
+  .lineage-names:hover{
+    animation-play-state:paused;
+  }
+  @keyframes slideLineage{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  .name{
+    font-family:'Amiri', serif;
+    font-size:0.95rem;
+    color:var(--parchment);
+    padding:0.4rem 0.8rem;
+    background:rgba(184,147,90,0.12);
+    border-radius:3px;
+    letter-spacing:0.02em;
+    flex-shrink:0;
+    transition:all 0.3s;
+  }
+  .name:hover{
+    background:rgba(184,147,90,0.28);
+    color:var(--brass-light);
+    transform:scale(1.05);
+  }
+  .separator{
+    color:var(--brass-light);
+    font-size:1.2rem;
+    flex-shrink:0;
+  }
+
+  @media (max-width: 760px){
+    .name{font-size:0.8rem;padding:0.3rem 0.6rem;}
+    .lineage-names{gap:0.4rem;}
+    .separator{font-size:1rem;}
+  }
+
+  /* ---------- FAQ Section ---------- */
+  .faq{background:var(--parchment);}
+  .faq-list{
+    max-width:800px;
+    margin:2.4rem auto;
+  }
+  .faq-item{
+    border:1px solid var(--line);
+    border-radius:6px;
+    margin-bottom:1rem;
+    overflow:hidden;
+    transition:all 0.3s;
+  }
+  .faq-item:hover{
+    box-shadow:0 4px 12px rgba(184,147,90,0.1);
+    border-color:var(--brass);
+  }
+  .faq-question{
+    width:100%;
+    padding:1.2rem;
+    background:linear-gradient(90deg, rgba(184,147,90,0.08) 0%, transparent 100%);
+    border:none;
+    text-align:left;
+    font-family:'Work Sans', sans-serif;
+    font-size:1.05rem;
+    color:var(--night);
+    font-weight:500;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    letter-spacing:0.01em;
+    transition:all 0.3s;
+  }
+  .faq-question:hover{
+    background:linear-gradient(90deg, rgba(184,147,90,0.16) 0%, transparent 100%);
+    color:var(--brass);
+  }
+  .faq-question::after{
+    content:"▼";
+    font-size:0.8rem;
+    color:var(--brass);
+    transition:transform 0.3s;
+  }
+  .faq-question.active{
+    background:linear-gradient(90deg, var(--brass) 0%, rgba(184,147,90,0.3) 100%);
+    color:var(--night-deep);
+  }
+  .faq-question.active::after{
+    transform:rotate(180deg);
+  }
+  .faq-answer{
+    padding:0 1.2rem;
+    max-height:0;
+    overflow:hidden;
+    transition:all 0.3s ease;
+    color:var(--slate);
+    line-height:1.7;
+  }
+  .faq-answer.active{
+    padding:1.2rem;
+    max-height:500px;
+  }
+
+  @media (max-width: 760px){
+    .faq-question{font-size:0.95rem;padding:1rem;}
+    .faq-answer.active{padding:1rem;}
+  }
+
+
+  /* ---------- Quote Carousel ---------- */
+  .hussain-quotes{
+    position:relative;
+    height:120px;
+    margin:1.6rem 0;
+  }
+  .quote-slide{
+    position:absolute;
+    opacity:0;
+    transition:opacity 0.8s ease-in-out;
+    width:100%;
+  }
+  .quote-slide.active{opacity:1;}
+
+  .quote-dots{
+    display:flex;
+    justify-content:center;
+    gap:0.6rem;
+    margin-top:1.6rem;
+  }
+  .dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(217,179,120,0.4);
+    cursor:pointer;
+    transition:all 0.3s;
+  }
+  .dot:hover,
+  .dot.active{
+    background:var(--brass-light);
+    transform:scale(1.3);
+  }
+
+  @media (max-width: 760px){
+    .hussain-cover{height:350px;}
+    .hussain-content h2{font-size:1.6rem;}
+    .hussain-quotes{height:100px;}
+    .quote-slide{font-size:1rem;}
+  }
+
+
+  /* ---------- Prayer Times ---------- */
+  .prayer-times{background:var(--night-deep);}
+  .prayer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:1.4rem;
+    max-width:900px;
+    margin:2.4rem auto;
+  }
+  .prayer-card{
+    background:linear-gradient(135deg, var(--night) 0%, rgba(16,24,43,0.8) 100%);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:1.6rem;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    transition:all 0.3s;
+  }
+  .prayer-card:hover{
+    border-color:var(--brass);
+    box-shadow:0 4px 12px rgba(184,147,90,0.15);
+    transform:translateY(-2px);
+  }
+  .prayer-name{
+    font-family:'Amiri', serif;
+    color:var(--brass-light);
+    font-size:0.95rem;
+    letter-spacing:0.05em;
+    margin-bottom:0.6rem;
+    text-transform:uppercase;
+  }
+  .prayer-time{
+    color:var(--parchment);
+    font-size:1.6rem;
+    font-weight:600;
+    font-family:'Work Sans', monospace;
+  }
+  .prayer-info{
+    text-align:center;
+    color:rgba(246,242,234,0.65);
+    font-size:0.9rem;
+    margin-top:2rem;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .prayer-times .section-head h2{color:var(--parchment);}
+  .prayer-times .section-head .eyebrow{color:var(--brass-light);}
+
+  @media (max-width: 760px){
+    .prayer-grid{gap:1rem;margin:1.6rem auto;}
+    .prayer-card{padding:1.2rem;}
+    .prayer-time{font-size:1.3rem;}
+    .prayer-name{font-size:0.85rem;}
+  }
+
+  /* ---------- Donation Modal ---------- */
+  .donation-modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(10,15,30,0.9);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+  }
+  .donation-modal.active{
+    display:flex;
+  }
+  .donation-modal-content{
+    background:var(--parchment);
+    border-radius:8px;
+    padding:2.4rem;
+    max-width:500px;
+    width:100%;
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    position:relative;
+  }
+  .donation-close{
+    position:absolute;
+    top:1rem;right:1rem;
+    background:none;
+    border:none;
+    font-size:1.8rem;
+    cursor:pointer;
+    color:var(--slate);
+    transition:color 0.2s;
+  }
+  .donation-close:hover{color:var(--night);}
+
+  .donation-modal h2{
+    color:var(--night);
+    margin-bottom:1.2rem;
+    font-size:1.8rem;
+  }
+  .donation-modal p{
+    color:var(--slate);
+    margin-bottom:1.4rem;
+    font-size:0.95rem;
+  }
+
+  .donation-detail{
+    background:rgba(184,147,90,0.08);
+    border-left:3px solid var(--brass);
+    padding:1rem;
+    margin-bottom:1.2rem;
+    border-radius:4px;
+  }
+  .donation-detail-label{
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:0.4rem;
+  }
+  .donation-detail-value{
+    font-family:'Courier New', monospace;
+    font-size:1.1rem;
+    color:var(--night);
+    font-weight:600;
+    word-break:break-all;
+    margin-bottom:0.6rem;
+  }
+
+  .copy-btn{
+    background:var(--brass);
+    color:var(--night-deep);
+    border:none;
+    padding:0.5rem 1rem;
+    font-size:0.8rem;
+    cursor:pointer;
+    border-radius:3px;
+    transition:all 0.2s;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-weight:500;
+  }
+  .copy-btn:hover{
+    background:var(--brass-light);
+    transform:scale(1.02);
+  }
+  .copy-btn.copied{
+    background:#4caf50;
+  }
+
+  .donation-note{
+    background:rgba(76,175,80,0.1);
+    border-left:3px solid #4caf50;
+    padding:0.8rem;
+    border-radius:3px;
+    font-size:0.9rem;
+    color:var(--slate);
+    margin-top:1.2rem;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Imamia<span>.</span></div>
+  <ul>
+    <li><a href="#about" data-i18n="nav_about">About</a></li>
+    <li><a href="#events" data-i18n="nav_events">Events</a></li>
+    <li><a href="#prayer-times" data-i18n="nav_prayer">Prayer Times</a></li>
+    <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    <li><button type="button" class="nav-donate-btn" id="donateNavBtn" data-i18n="nav_donate">Donate</button></li>
+  </ul>
+  <div class="lang-switch">
+    <button type="button" data-lang="it">IT</button>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="ur">اردو</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow" data-i18n="hero_eyebrow">Welcome</span>
+  <div class="hero-arch"><img src="images/logo.jpg" alt="Imamia Milano" style="width:100%;height:100%;object-fit:contain;"></div>
+  <h1 data-i18n="hero_title">A gathering place for our community</h1>
+  <p class="lede" data-i18n="hero_lede">Imamia shares information about who we are and brings our community together — majalis, gatherings, and announcements, all in one place.</p>
+  <a href="#events" class="btn" data-i18n="hero_btn">See Upcoming Events</a>
+</header>
+
+<section class="hussain-cover">
+  <div class="hussain-bg" style="background-image:url('images/imam-hussain-shrine.png');"></div>
+  <div class="hussain-overlay">
+    <div class="hussain-content">
+      <h2 data-i18n="hussain_title">The Spirit of Imam Hussain (AS)</h2>
+      <p data-i18n="hussain_tagline">Humanity, Justice, Compassion</p>
+      <div class="hussain-quotes">
+        <blockquote data-i18n="hussain_quote_1" class="quote-slide active">
+          "The most generous person is the one who forgives while in power."
+        </blockquote>
+        <blockquote data-i18n="hussain_quote_2" class="quote-slide">
+          "The most merciful person is the one who forgives when he is able to revenge."
+        </blockquote>
+        <blockquote data-i18n="hussain_quote_3" class="quote-slide">
+          "A person who considers you his friend will always stop you from doing anything bad, however, a person who considers you an enemy will always persuade you to do bad."
+        </blockquote>
+        <blockquote data-i18n="hussain_quote_4" class="quote-slide">
+          "Do not say something which would undermine your self-worth."
+        </blockquote>
+        <blockquote data-i18n="hussain_quote_5" class="quote-slide">
+          "Seeking knowledge will lead you toward wisdom and elevation."
+        </blockquote>
+        <blockquote data-i18n="hussain_quote_6" class="quote-slide">
+          "A rude person in all true meanings is the one who avoids greeting others."
+        </blockquote>
+      </div>
+      <div class="quote-dots">
+        <span class="dot active" onclick="currentQuote(0)"></span>
+        <span class="dot" onclick="currentQuote(1)"></span>
+        <span class="dot" onclick="currentQuote(2)"></span>
+        <span class="dot" onclick="currentQuote(3)"></span>
+        <span class="dot" onclick="currentQuote(4)"></span>
+        <span class="dot" onclick="currentQuote(5)"></span>
+      </div>
+      <div class="lineage-scroll">
+        <div class="lineage-names">
+          <span class="name" data-i18n="hazrat_muhammad">Hazrat Muhammad (SAWW)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_ali_1">Hazrat Ali (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_fatima">Hazrat Fatima (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_hasan">Hazrat Hasan (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_hussain">Hazrat Hussain (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_ali_2">Hazrat Ali Zainul Abideen (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_baqir">Hazrat Muhammad Al-Baqir (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_sadiq">Hazrat Ja'far As-Sadiq (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_kadhim">Hazrat Musa Al-Kadhim (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_rida">Hazrat Ali Ar-Rida (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_taqi">Hazrat Muhammad At-Taqi (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_naqi">Hazrat Ali An-Naqi (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_askari">Hazrat Hasan Al-Askari (AS)</span>
+          <span class="separator">→</span>
+          <span class="name" data-i18n="hazrat_mahdi">Hazrat Muhammad Al-Mahdi (AS)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-head">
+    <span class="eyebrow" data-i18n="about_eyebrow">About Us</span>
+    <h2 data-i18n="about_title">Who we are</h2>
+    <p data-i18n="about_subtitle">A short introduction to your community, mission, and purpose.</p>
+  </div>
+  <div class="about-grid">
+    <div class="arch-wrap"><img src="images/logo.jpg" alt="Imamia Milano" style="width:70px;height:auto;"></div>
+    <div>
+      <p data-i18n="about_p1"><strong>Imamiyyah Welfare Organization</strong> è un'associazione di promozione sociale e culturale, apartitica e senza scopo di lucro, con sede legale a Trezzano sul Naviglio. Nasce per favorire l'integrazione della comunità pakistana e asiatica in Italia, promuovendo formazione, lingua, cultura e diritti civili.</p>
+      <p data-i18n="about_p2">Le nostre finalità includono il sostegno scolastico e la formazione permanente, l'insegnamento della lingua Urdu e italiana ai più giovani, e la promozione di attività culturali, artistiche e sportive che valorizzano le tradizioni d'origine mantenendo un percorso di integrazione con il territorio.</p>
+      <p data-i18n="about_p3">Ci impegniamo per il riconoscimento dei diritti civili e umani, contro ogni forma di discriminazione, e lavoriamo per rafforzare il dialogo e la fratellanza tra la nostra comunità e i cittadini locali, attraverso lo scambio culturale e la collaborazione con altre associazioni ed enti.</p>
+      <p data-i18n="about_p4">L'associazione è amministrata da un'Assemblea dei Soci e da un Consiglio Direttivo, guidati da un Presidente, secondo lo statuto depositato presso l'Agenzia delle Entrate di Milano.</p>
+    </div>
+  </div>
+</section>
+
+<section class="events" id="events">
+  <div class="section-head">
+    <span class="eyebrow" data-i18n="events_eyebrow">Announcements</span>
+    <h2 data-i18n="events_title">Upcoming events</h2>
+    <p data-i18n="events_subtitle">Stay informed about our gatherings, majalis, and community programs.</p>
+  </div>
+  <div class="event-list">
+    <div class="event">
+      <div class="date"><span class="day">26</span><span class="month">Jul</span></div>
+      <div>
+        <h3>Majlis Aza</h3>
+        <div class="meta">After Zohrain until 4:00 PM · Via Valsolda 21, Milano, Italy</div>
+        <p>Majlis Aza featuring renowned Islamic scholar Aalima Syeda Khanum Tayyaba Bukhari (Islamabad). This event is for women (Mominat) and punctuality is recommended. Niaz of Imam Hussain will be served at the end. Contact: +39 366 597 0703 - +39 353 372 1575</p>
+      </div>
+    </div>
+    <div class="event">
+      <div class="date"><span class="day">15</span><span class="month">Aug</span></div>
+      <div>
+        <h3>Majlis & Chehlum of Imam Hussain (AS)</h3>
+        <div class="meta">4:30 PM · Imamia Center</div>
+        <p>The Majlis will feature the renowned Islamic scholar Allama Anees Raza Naqvi (from Canada), accompanied by the participation of other eminent scholars.</p>
+      </div>
+    </div>
+    <div class="event">
+      <div class="date"><span class="day">20</span><span class="month">Sep</span></div>
+      <div>
+        <h3>Special Children's Event</h3>
+        <div class="meta">12:30 PM · Imamia Center</div>
+        <p>Join us for a fun-filled day dedicated to the youngest members of our community! The event will include exciting games, an interactive question and answer session, and a delicious outdoor barbecue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prayer-times" id="prayer-times">
+  <div class="section-head">
+    <span class="eyebrow" data-i18n="prayer_eyebrow">Prayer Times</span>
+    <h2 data-i18n="prayer_title">Daily Prayer Times — Milan</h2>
+    <p data-i18n="prayer_subtitle">Shia (Jafari) calculation for today</p>
+  </div>
+  <div class="prayer-grid">
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="fajr">Fajr</div>
+      <div class="prayer-time" id="time-fajr">--:--</div>
+    </div>
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="sunrise">Sunrise</div>
+      <div class="prayer-time" id="time-sunrise">--:--</div>
+    </div>
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="dhuhr">Dhuhr</div>
+      <div class="prayer-time" id="time-dhuhr">--:--</div>
+    </div>
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="asr">Asr</div>
+      <div class="prayer-time" id="time-asr">--:--</div>
+    </div>
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="maghrib">Maghrib</div>
+      <div class="prayer-time" id="time-maghrib">--:--</div>
+    </div>
+    <div class="prayer-card">
+      <div class="prayer-name" data-i18n="isha">Isha</div>
+      <div class="prayer-time" id="time-isha">--:--</div>
+    </div>
+  </div>
+  <div class="prayer-info" data-i18n="prayer_info">
+    Prayer times calculated using Shia (Jafari) method for Milan, Italy. Times update daily.
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="section-head">
+    <span class="eyebrow" data-i18n="faq_eyebrow">Questions?</span>
+    <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+    <p data-i18n="faq_subtitle">Find answers to common questions about our community and events.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q1">Where are you located?</button>
+      <div class="faq-answer" data-i18n="faq_a1">Our community center is located at: <strong>Via Valsolda 21, Milano, Italy</strong>. We welcome visitors from all areas. Please contact us for parking information or if you need any assistance.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q2">Is everyone welcome?</button>
+      <div class="faq-answer" data-i18n="faq_a2">Yes, absolutely. Our doors are open to everyone regardless of background, faith, or origin. We believe in unity and respect for all.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q3">Is there parking available?</button>
+      <div class="faq-answer" data-i18n="faq_a3">Yes, we have parking available near our center. Please contact us ahead of time for special events if you need reserved parking.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q4">Are lectures translated?</button>
+      <div class="faq-answer" data-i18n="faq_a4">Yes, our lectures are typically available in Italian, English, and Urdu. Please check specific events for translation availability.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q5">Is there space for sisters?</button>
+      <div class="faq-answer" data-i18n="faq_a5">Yes, we have dedicated spaces for sisters. Our center is designed to accommodate everyone comfortably during prayers and gatherings.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q6">Can children attend?</button>
+      <div class="faq-answer" data-i18n="faq_a6">Yes, children are very welcome. We have activities and programs designed specifically for young people, and families are encouraged to attend together.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" data-i18n="faq_q7">Can anyone become a member?</button>
+      <div class="faq-answer" data-i18n="faq_a7">Yes, anyone can become a member of Imamiyyah Welfare Organization. You simply need to fill out our membership form with your details and submit it. We welcome people from all backgrounds. Please contact us or visit our center to obtain the membership form.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Donation Modal -->
+<div class="donation-modal" id="donationModal">
+  <div class="donation-modal-content">
+    <button class="donation-close" id="donationClose">&times;</button>
+    <h2 data-i18n="donation_title">Support Our Community</h2>
+    <p data-i18n="donation_subtitle">Your generous donation helps us continue our mission of promoting education, culture, and community welfare.</p>
+    
+    <div class="donation-detail">
+      <div class="donation-detail-label" data-i18n="donation_org_label">Organization Name</div>
+      <div class="donation-detail-value" id="orgValue">Imamiyyah Welfare Organization</div>
+      <button class="copy-btn" onclick="copyToClipboard('orgValue', this)" data-i18n="donation_copy_org">Copy Organization Name</button>
+    </div>
+
+    <div class="donation-detail">
+      <div class="donation-detail-label" data-i18n="donation_iban_label">IBAN</div>
+      <div class="donation-detail-value" id="ibanValue">IT79 G 05584 01659 0000 0000 5189</div>
+      <button class="copy-btn" onclick="copyToClipboard('ibanValue', this)" data-i18n="donation_copy">Copy IBAN</button>
+    </div>
+
+    <div class="donation-detail">
+      <div class="donation-detail-label" data-i18n="donation_bank_label">Bank Name</div>
+      <div class="donation-detail-value" id="bankValue">Banca Popolare di Milano</div>
+      <button class="copy-btn" onclick="copyToClipboard('bankValue', this)" data-i18n="donation_copy_bank">Copy Bank Name</button>
+    </div>
+
+    <div class="donation-note" data-i18n="donation_note">
+      Thank you for your support. All donations are secure and will be used to advance our community's welfare and cultural initiatives.
+    </div>
+  </div>
+</div>
+
+<footer id="contact">
+  <img src="images/logo.jpg" alt="Imamia Milano" style="width:50px;height:auto;margin-bottom:1.4rem;">
+  <h3 data-i18n="footer_title">Get in touch</h3>
+  <p data-i18n="footer_subtitle">Have a question, or want your event listed here?</p>
+  <div class="contact-line">
+    <span>iqmilan@gmail.com</span>
+    <span>3533721575</span>
+    <span>3665970703</span>
+    <span data-i18n="footer_location">All events at Imam Ali Center Milano, Via Valsolda 21, Milano, Italy</span>
+  </div>
+  <div class="fine" data-i18n="footer_copy">&copy; 2026 Imamia. All rights reserved.</div>
+</footer>
+
+<script>
+const translations = {
+  it: {
+    nav_about: "Chi siamo",
+    nav_events: "Eventi",
+    nav_prayer: "Orari di preghiera",
+    nav_contact: "Contatti",
+    hero_eyebrow: "Benvenuti",
+    hero_title: "Un luogo d'incontro per la nostra comunità",
+    hero_lede: "Imamia condivide informazioni su chi siamo e unisce la nostra comunità — majalis, incontri e annunci, tutto in un unico posto.",
+    hero_btn: "Vedi i prossimi eventi",
+    about_eyebrow: "Chi siamo",
+    about_title: "Chi siamo",
+    about_subtitle: "Una breve introduzione alla nostra comunità, missione e scopo.",
+    about_p1: "<strong>Imamiyyah Welfare Organization</strong> è un'associazione di promozione sociale e culturale, apartitica e senza scopo di lucro, con sede legale a Trezzano sul Naviglio. Nasce per favorire l'integrazione della comunità pakistana e asiatica in Italia, promuovendo formazione, lingua, cultura e diritti civili.",
+    about_p2: "Le nostre finalità includono il sostegno scolastico e la formazione permanente, l'insegnamento della lingua Urdu e italiana ai più giovani, e la promozione di attività culturali, artistiche e sportive che valorizzano le tradizioni d'origine mantenendo un percorso di integrazione con il territorio.",
+    about_p3: "Ci impegniamo per il riconoscimento dei diritti civili e umani, contro ogni forma di discriminazione, e lavoriamo per rafforzare il dialogo e la fratellanza tra la nostra comunità e i cittadini locali, attraverso lo scambio culturale e la collaborazione con altre associazioni ed enti.",
+    about_p4: "L'associazione è amministrata da un'Assemblea dei Soci e da un Consiglio Direttivo, guidati da un Presidente, secondo lo statuto depositato presso l'Agenzia delle Entrate di Milano.",
+    events_eyebrow: "Annunci",
+    events_title: "Prossimi eventi",
+    events_subtitle: "Resta informato sui nostri incontri, majalis e programmi comunitari.",
+    event_title: "Titolo evento",
+    event1_meta: "19:00 &middot; Sala comunitaria",
+    event2_meta: "18:30 &middot; Centro Imamia",
+    event3_meta: "Tutto il giorno &middot; Sede",
+    event_desc: "Breve descrizione dell'evento — cos'è, per chi è pensato e i dettagli utili ai partecipanti.",
+    footer_title: "Contattaci",
+    footer_subtitle: "Hai una domanda o vuoi che il tuo evento sia elencato qui?",
+    footer_copy: "&copy; 2026 Imamia. Tutti i diritti riservati.",
+    hussain_title: "Lo spirito dell'Imam Hussain (AS)",
+    hussain_tagline: "Umanità, Giustizia, Compassione",
+    hussain_quote_1: "\"La persona più generosa è colui che perdona mentre è al potere.\"",
+    hussain_quote_2: "\"La persona più misericordiosa è colui che perdona quando è in grado di vendicarsi.\"",
+    hussain_quote_3: "\"Una persona che ti considera suo amico ti farà sempre stare lontano dal male, tuttavia, una persona che ti considera suo nemico ti persuaderà sempre a fare il male.\"",
+    hussain_quote_4: "\"Non dire nulla che diminuirebbe il tuo valore personale.\"",
+    hussain_quote_5: "\"La ricerca della conoscenza ti porterà verso la saggezza e l'elevazione.\"",
+    hussain_quote_6: "\"Una persona scortese in tutti i veri significati è colei che evita di salutare gli altri.\"",
+    lineage_label: "La Stirpe Benedetta (Ahlul Bayt AS)",
+    prophet_name: "Profeta Muhammad (SAWW)",
+    ali_name: "Imam Ali (AS)",
+    fatima_name: "Fatima Az-Zahra (AS)",
+    hasan_name: "Imam Hasan (AS)",
+    hussain_name: "Imam Hussain (AS)",
+    hazrat_muhammad: "Hazrat Muhammad (SAWW)",
+    hazrat_ali_1: "Hazrat Ali (AS)",
+    hazrat_fatima: "Hazrat Fatima (AS)",
+    hazrat_hasan: "Hazrat Hasan (AS)",
+    hazrat_hussain: "Hazrat Hussain (AS)",
+    hazrat_ali_2: "Hazrat Ali Zainul Abideen (AS)",
+    hazrat_baqir: "Hazrat Muhammad Al-Baqir (AS)",
+    hazrat_sadiq: "Hazrat Ja'far As-Sadiq (AS)",
+    hazrat_kadhim: "Hazrat Musa Al-Kadhim (AS)",
+    hazrat_rida: "Hazrat Ali Ar-Rida (AS)",
+    hazrat_taqi: "Hazrat Muhammad At-Taqi (AS)",
+    hazrat_naqi: "Hazrat Ali An-Naqi (AS)",
+    hazrat_askari: "Hazrat Hasan Al-Askari (AS)",
+    hazrat_mahdi: "Hazrat Muhammad Al-Mahdi (AS)",
+    nav_faq: "Domande",
+    faq_eyebrow: "Domande?",
+    faq_title: "Domande Frequenti",
+    faq_subtitle: "Trova risposte alle domande comuni sulla nostra comunità e sui nostri eventi.",
+    faq_q1: "Dove siete ubicati?",
+    faq_a1: "Il nostro centro comunitario si trova a Milano, Italia. Accogliamo visitatori da tutte le aree. Contattaci per indicazioni esatte e informazioni sul parcheggio.",
+    faq_q2: "Siete aperti a tutti?",
+    faq_a2: "Sì, assolutamente. Le nostre porte sono aperte a chiunque, indipendentemente da background, fede o origine. Crediamo nell'unità e nel rispetto per tutti.",
+    faq_q3: "C'è parcheggio disponibile?",
+    faq_a3: "Sì, abbiamo parcheggio disponibile vicino al nostro centro. Per favore contattaci in anticipo per gli eventi speciali se hai bisogno di parcheggio riservato.",
+    faq_q4: "Le lezioni sono tradotte?",
+    faq_a4: "Sì, le nostre lezioni sono generalmente disponibili in italiano, inglese e urdu. Controlla gli eventi specifici per la disponibilità di traduzione.",
+    faq_q5: "C'è spazio per le sorelle?",
+    faq_a5: "Sì, abbiamo spazi dedicati per le sorelle. Il nostro centro è progettato per accogliere comodamente tutti durante le preghiere e gli incontri.",
+    faq_q6: "I bambini possono partecipare?",
+    faq_a6: "Sì, i bambini sono molto benvenuti. Abbiamo attività e programmi progettati specificamente per i giovani, e le famiglie sono incoraggiate a partecipare insieme.",
+    faq_q7: "Chiunque può diventare membro?",
+    faq_a7: "Sì, chiunque può diventare membro dell'Organizzazione del Benessere Imamiyyah. Basta compilare il nostro modulo di iscrizione con i tuoi dati e inviarlo. Accogliamo persone da ogni provenienza. Contattaci o visita il nostro centro per ottenere il modulo di iscrizione.",
+    nav_donate: "Donazione",
+    donation_title: "Sostieni la nostra comunità",
+    donation_subtitle: "La tua generosa donazione ci aiuta a continuare la nostra missione di promuovere l'educazione, la cultura e il benessere della comunità.",
+    donation_iban_label: "IBAN",
+    donation_copy: "Copia IBAN",
+    donation_bank_label: "Nome Banca",
+    donation_copy_bank: "Copia Nome Banca",
+    donation_org_label: "Nome Organizzazione",
+    donation_copy_org: "Copia Nome Organizzazione",
+    donation_note: "Grazie per il tuo supporto. Tutte le donazioni sono sicure e saranno utilizzate per avanzare le iniziative di benessere e culturali della nostra comunità.",
+    footer_location: "Tutti gli eventi presso Imam Ali Center Milano, Via Valsolda 21, Milano, Italia",
+    prayer_eyebrow: "Orari di preghiera",
+    prayer_title: "Orari delle preghiere — Milano",
+    prayer_subtitle: "Calcolo Sciita (Jafari) per oggi",
+    fajr: "Fajr",
+    sunrise: "Alba",
+    dhuhr: "Dhuhr",
+    asr: "Asr",
+    maghrib: "Maghrib",
+    isha: "Isha",
+    prayer_info: "Orari di preghiera calcolati con il metodo Sciita (Jafari) per Milano, Italia. Gli orari si aggiornano quotidianamente."
+  },
+  en: {
+    nav_about: "About",
+    nav_events: "Events",
+    nav_prayer: "Prayer Times",
+    nav_contact: "Contact",
+    hero_eyebrow: "Welcome",
+    hero_title: "A gathering place for our community",
+    hero_lede: "Imamia shares information about who we are and brings our community together — majalis, gatherings, and announcements, all in one place.",
+    hero_btn: "See Upcoming Events",
+    about_eyebrow: "About Us",
+    about_title: "Who we are",
+    about_subtitle: "A short introduction to our community, mission, and purpose.",
+    about_p1: "<strong>Imamiyyah Welfare Organization</strong> is a non-profit, non-political social and cultural association, legally based in Trezzano sul Naviglio. It was founded to support the integration of the Pakistani and Asian community in Italy, promoting education, language, culture, and civil rights.",
+    about_p2: "Our aims include school support and lifelong learning, teaching Urdu and Italian to younger generations, and promoting cultural, artistic, and sporting activities that preserve our traditions while supporting integration with the local community.",
+    about_p3: "We are committed to the recognition of civil and human rights, against all forms of discrimination, and we work to strengthen dialogue and brotherhood between our community and local residents through cultural exchange and collaboration with other associations.",
+    about_p4: "The association is managed by a General Assembly of Members and a Board of Directors, led by a President, in accordance with the statute filed with the Milan Revenue Agency.",
+    events_eyebrow: "Announcements",
+    events_title: "Upcoming events",
+    events_subtitle: "Stay informed about our gatherings, majalis, and community programs.",
+    event_title: "Event Title Here",
+    event1_meta: "7:00 PM &middot; Community Hall",
+    event2_meta: "6:30 PM &middot; Imamia Center",
+    event3_meta: "All Day &middot; Location",
+    event_desc: "Short description of the event — what it is, who it's for, and any details attendees should know.",
+    footer_title: "Get in touch",
+    footer_subtitle: "Have a question, or want your event listed here?",
+    footer_copy: "&copy; 2026 Imamia. All rights reserved.",
+    hussain_title: "The Spirit of Imam Hussain (AS)",
+    hussain_tagline: "Humanity, Justice, Compassion",
+    hussain_quote_1: "\"The most generous person is the one who forgives while in power.\"",
+    hussain_quote_2: "\"The most merciful person is the one who forgives when he is able to revenge.\"",
+    hussain_quote_3: "\"A person who considers you his friend will always stop you from doing anything bad, however, a person who considers you an enemy will always persuade you to do bad.\"",
+    hussain_quote_4: "\"Do not say something which would undermine your self-worth.\"",
+    hussain_quote_5: "\"Seeking knowledge will lead you toward wisdom and elevation.\"",
+    hussain_quote_6: "\"A rude person in all true meanings is the one who avoids greeting others.\"",
+    lineage_label: "The Blessed Lineage (Ahlul Bayt AS)",
+    prophet_name: "Prophet Muhammad (SAWW)",
+    ali_name: "Imam Ali (AS)",
+    fatima_name: "Fatima Az-Zahra (AS)",
+    hasan_name: "Imam Hasan (AS)",
+    hussain_name: "Imam Hussain (AS)",
+    hazrat_muhammad: "Hazrat Muhammad (SAWW)",
+    hazrat_ali_1: "Hazrat Ali (AS)",
+    hazrat_fatima: "Hazrat Fatima (AS)",
+    hazrat_hasan: "Hazrat Hasan (AS)",
+    hazrat_hussain: "Hazrat Hussain (AS)",
+    hazrat_ali_2: "Hazrat Ali Zainul Abideen (AS)",
+    hazrat_baqir: "Hazrat Muhammad Al-Baqir (AS)",
+    hazrat_sadiq: "Hazrat Ja'far As-Sadiq (AS)",
+    hazrat_kadhim: "Hazrat Musa Al-Kadhim (AS)",
+    hazrat_rida: "Hazrat Ali Ar-Rida (AS)",
+    hazrat_taqi: "Hazrat Muhammad At-Taqi (AS)",
+    hazrat_naqi: "Hazrat Ali An-Naqi (AS)",
+    hazrat_askari: "Hazrat Hasan Al-Askari (AS)",
+    hazrat_mahdi: "Hazrat Muhammad Al-Mahdi (AS)",
+    nav_faq: "FAQ",
+    faq_eyebrow: "Questions?",
+    faq_title: "Frequently Asked Questions",
+    faq_subtitle: "Find answers to common questions about our community and events.",
+    faq_q1: "Where are you located?",
+    faq_a1: "Our community center is located at: <strong>Via Valsolda 21, Milano, Italy</strong>. We welcome visitors from all areas. Please contact us for parking information or if you need any assistance.",
+    faq_q2: "Is everyone welcome?",
+    faq_a2: "Yes, absolutely. Our doors are open to everyone regardless of background, faith, or origin. We believe in unity and respect for all.",
+    faq_q3: "Is there parking available?",
+    faq_a3: "Yes, we have parking available near our center. Please contact us ahead of time for special events if you need reserved parking.",
+    faq_q4: "Are lectures translated?",
+    faq_a4: "Yes, our lectures are typically available in Italian, English, and Urdu. Please check specific events for translation availability.",
+    faq_q5: "Is there space for sisters?",
+    faq_a5: "Yes, we have dedicated spaces for sisters. Our center is designed to accommodate everyone comfortably during prayers and gatherings.",
+    faq_q6: "Can children attend?",
+    faq_a6: "Yes, children are very welcome. We have activities and programs designed specifically for young people, and families are encouraged to attend together.",
+    faq_q7: "Can anyone become a member?",
+    faq_a7: "Yes, anyone can become a member of Imamiyyah Welfare Organization. You simply need to fill out our membership form with your details and submit it. We welcome people from all backgrounds. Please contact us or visit our center to obtain the membership form.",
+    nav_donate: "Donate",
+    donation_title: "Support Our Community",
+    donation_subtitle: "Your generous donation helps us continue our mission of promoting education, culture, and community welfare.",
+    donation_iban_label: "IBAN",
+    donation_copy: "Copy IBAN",
+    donation_bank_label: "Bank Name",
+    donation_copy_bank: "Copy Bank Name",
+    donation_org_label: "Organization Name",
+    donation_copy_org: "Copy Organization Name",
+    donation_note: "Thank you for your support. All donations are secure and will be used to advance our community's welfare and cultural initiatives.",
+    footer_location: "All events at Imam Ali Center Milano, Via Valsolda 21, Milano, Italy",
+    prayer_eyebrow: "Prayer Times",
+    prayer_title: "Daily Prayer Times — Milan",
+    prayer_subtitle: "Shia (Jafari) calculation for today",
+    fajr: "Fajr",
+    sunrise: "Sunrise",
+    dhuhr: "Dhuhr",
+    asr: "Asr",
+    maghrib: "Maghrib",
+    isha: "Isha",
+    prayer_info: "Prayer times calculated using Shia (Jafari) method for Milan, Italy. Times update daily."
+  },
+  ur: {
+    nav_about: "ہمارے بارے میں",
+    nav_events: "تقریبات",
+    nav_prayer: "نماز کے اوقات",
+    nav_contact: "رابطہ",
+    hero_eyebrow: "خوش آمدید",
+    hero_title: "ہماری کمیونٹی کے لیے ایک اجتماع کی جگہ",
+    hero_lede: "امامیہ ہمارے بارے میں معلومات فراہم کرتا ہے اور ہماری کمیونٹی کو اکٹھا کرتا ہے — مجالس، اجتماعات اور اعلانات، سب ایک ہی جگہ پر۔",
+    hero_btn: "آئندہ تقریبات دیکھیں",
+    about_eyebrow: "ہمارے بارے میں",
+    about_title: "ہم کون ہیں",
+    about_subtitle: "ہماری کمیونٹی، مشن اور مقصد کا مختصر تعارف۔",
+    about_p1: "<strong>امامیہ ویلفیئر آرگنائزیشن</strong> ایک غیر منافع بخش، غیر سیاسی سماجی و ثقافتی تنظیم ہے، جس کا قانونی مرکز تریزانو سول نویلیو میں ہے۔ اسے اٹلی میں پاکستانی اور ایشیائی کمیونٹی کے انضمام میں مدد کے لیے قائم کیا گیا، جو تعلیم، زبان، ثقافت اور شہری حقوق کو فروغ دیتی ہے۔",
+    about_p2: "ہمارے مقاصد میں تعلیمی معاونت اور تاحیات سیکھنا، نوجوان نسل کو اردو اور اطالوی زبان سکھانا، اور ثقافتی، فنی اور کھیلوں کی سرگرمیوں کو فروغ دینا شامل ہے جو ہماری اصل روایات کو محفوظ رکھتے ہوئے مقامی کمیونٹی کے ساتھ انضمام کو بھی فروغ دیتی ہیں۔",
+    about_p3: "ہم شہری اور انسانی حقوق کی پہچان اور ہر قسم کے امتیاز کے خلاف پرعزم ہیں، اور اپنی کمیونٹی اور مقامی باشندوں کے درمیان مکالمے اور بھائی چارے کو مضبوط بنانے کے لیے کام کرتے ہیں۔",
+    about_p4: "انجمن کی نگرانی جنرل اسمبلی آف ممبرز اور بورڈ آف ڈائریکٹرز کرتے ہیں، جس کی سربراہی ایک صدر کرتا ہے، میلان ریونیو ایجنسی میں درج شدہ آئین کے مطابق۔",
+    events_eyebrow: "اعلانات",
+    events_title: "آئندہ تقریبات",
+    events_subtitle: "ہماری تقریبات، مجالس اور کمیونٹی پروگراموں سے آگاہ رہیں۔",
+    event_title: "تقریب کا عنوان",
+    event1_meta: "شام 7 بجے &middot; کمیونٹی ہال",
+    event2_meta: "شام 6:30 بجے &middot; امامیہ سینٹر",
+    event3_meta: "پورا دن &middot; مقام",
+    event_desc: "تقریب کی مختصر تفصیل — یہ کیا ہے، کن کے لیے ہے، اور شرکاء کے لیے ضروری تفصیلات۔",
+    footer_title: "رابطہ کریں",
+    footer_subtitle: "کوئی سوال ہے، یا اپنی تقریب یہاں شامل کروانا چاہتے ہیں؟",
+    footer_copy: "&copy; 2026 امامیہ۔ جملہ حقوق محفوظ ہیں۔",
+    hussain_title: "امام حسین (علیہ السلام) کی روح",
+    hussain_tagline: "انسانیت، انصاف، شفقت",
+    hussain_quote_1: "\"سب سے زیادہ سخی وہ ہے جو طاقت میں ہوتے ہوئے معاف کرے۔\"",
+    hussain_quote_2: "\"سب سے زیادہ رحم دل وہ ہے جو انتقام لینے کی صلاحیت رکھتے ہوئے معاف کرے۔\"",
+    hussain_quote_3: "\"جو شخص تمہیں اپنا دوست سمجھتا ہے وہ ہمیشہ تمہیں برائی سے روکے گا، لیکن جو شخص تمہیں اپنا دشمن سمجھتا ہے وہ ہمیشہ تمہیں برائی کی ترغیب دے گا۔\"",
+    hussain_quote_4: "\"ایسی کوئی بات نہ کہو جو تمہاری خود احترامی کو نقصان پہنچائے۔\"",
+    hussain_quote_5: "\"علم کی تلاش تمہیں حکمت اور بلندی کی طرف لے جائے گی۔\"",
+    hussain_quote_6: "\"حقیقی معنوں میں غیر شائستہ شخص وہ ہے جو دوسروں کو سلام کرنے سے گریز کرے۔\"",
+    lineage_label: "مبارک نسب (اہل بیت علیہم السلام)",
+    prophet_name: "نبی محمد (صلی اللہ علیہ و آلہ و سلم)",
+    ali_name: "امام علی (علیہ السلام)",
+    fatima_name: "فاطمہ الزہراء (علیہا السلام)",
+    hasan_name: "امام حسن (علیہ السلام)",
+    hussain_name: "امام حسین (علیہ السلام)",
+    hazrat_muhammad: "حضرت محمد (صلی اللہ علیہ و آلہ و سلم)",
+    hazrat_ali_1: "حضرت علی (علیہ السلام)",
+    hazrat_fatima: "حضرت فاطمہ (علیہا السلام)",
+    hazrat_hasan: "حضرت حسن (علیہ السلام)",
+    hazrat_hussain: "حضرت حسین (علیہ السلام)",
+    hazrat_ali_2: "حضرت علی زین العابدین (علیہ السلام)",
+    hazrat_baqir: "حضرت محمد الباقر (علیہ السلام)",
+    hazrat_sadiq: "حضرت جعفر الصادق (علیہ السلام)",
+    hazrat_kadhim: "حضرت موسیٰ الکاظم (علیہ السلام)",
+    hazrat_rida: "حضرت علی الرضا (علیہ السلام)",
+    hazrat_taqi: "حضرت محمد التقی (علیہ السلام)",
+    hazrat_naqi: "حضرت علی النقی (علیہ السلام)",
+    hazrat_askari: "حضرت حسن العسکری (علیہ السلام)",
+    hazrat_mahdi: "حضرت محمد المہدی (علیہ السلام)",
+    nav_faq: "سوالات",
+    faq_eyebrow: "سوالات؟",
+    faq_title: "اکثر پوچھے جانے والے سوالات",
+    faq_subtitle: "ہماری کمیونٹی اور تقریبات کے بارے میں عام سوالات کے جوابات تلاش کریں۔",
+    faq_q1: "آپ کہاں واقع ہیں؟",
+    faq_a1: "ہماری کمیونٹی سینٹر یہاں واقع ہے: <strong>Via Valsolda 21, Milano, Italy</strong>۔ ہم تمام علاقوں سے آنے والے مہمانوں کا خیر مقدم کرتے ہیں۔ براہ کرم پارکنگ کی معلومات کے لیے یا کسی مدد کی ضرورت ہو تو ہمسے رابطہ کریں۔",
+    faq_q2: "کیا سب کا خیر مقدم ہے؟",
+    faq_a2: "جی، بالکل۔ ہمارے دروازے ہر کسی کے لیے کھلے ہیں چاہے کوئی بھی پس منظر، عقیدہ یا اصل ہو۔ ہم اتحاد اور سب کی احترام میں یقین رکھتے ہیں۔",
+    faq_q3: "کیا پارکنگ دستیاب ہے؟",
+    faq_a3: "جی، ہمارے سینٹر کے قریب پارکنگ دستیاب ہے۔ براہ کرم خصوصی تقریبات کے لیے پہلے سے ہمسے رابطہ کریں اگر آپ کو محفوظ پارکنگ کی ضرورت ہو۔",
+    faq_q4: "کیا لیکچرز ترجمہ ہوتے ہیں؟",
+    faq_a4: "جی، ہماری لیکچرز عام طور پر اردو، انگریزی اور اطالوی میں دستیاب ہوتی ہیں۔ ترجمے کی دستیابی کے لیے مخصوص تقریبات کو چیک کریں۔",
+    faq_q5: "کیا بہنوں کے لیے جگہ ہے؟",
+    faq_a5: "جی، ہمارے پاس بہنوں کے لیے مخصوص جگہیں ہیں۔ ہمارا سینٹر نمازوں اور جمع میں سب کو آرام سے ملنے کے لیے ڈیزائن کیا گیا ہے۔",
+    faq_q6: "کیا بچے حاضر ہو سکتے ہیں؟",
+    faq_a6: "جی، بچے بہت خوش آمدید ہیں۔ ہمارے پاس خصوصی طور پر نوجوانوں کے لیے ڈیزائن کی گئی سرگرمیاں اور پروگرام ہیں، اور خاندانوں کو ایک ساتھ شرکت کرنے کی ترغیب دی جاتی ہے۔",
+    faq_q7: "کیا کوئی بھی رکن بن سکتا ہے؟",
+    faq_a7: "جی، کوئی بھی امامیہ ویلفیئر آرگنائزیشن کا رکن بن سکتا ہے۔ آپ کو صرف ہماری رکنیت کی فارم کو اپنی تفصیلات کے ساتھ پر کرنا اور جمع کرنا ہے۔ ہم ہر پس منظر سے لوگوں کا خیر مقدم کرتے ہیں۔ براہ کرم رکنیت کی فارم حاصل کرنے کے لیے ہمسے رابطہ کریں یا ہمارے سینٹر میں آئیں۔",
+    nav_donate: "عطیہ",
+    donation_title: "ہماری کمیونٹی کی معاونت کریں",
+    donation_subtitle: "آپ کا سخی عطیہ ہمیں تعلیم، ثقافت اور کمیونٹی کی فلاح و بہبود کو فروغ دینے کے ہمارے مشن کو جاری رکھنے میں مدد کرتا ہے۔",
+    donation_iban_label: "IBAN",
+    donation_copy: "IBAN کاپی کریں",
+    donation_bank_label: "بینک کا نام",
+    donation_copy_bank: "بینک کا نام کاپی کریں",
+    donation_org_label: "تنظیم کا نام",
+    donation_copy_org: "تنظیم کا نام کاپی کریں",
+    donation_note: "آپ کی معاونت کے لیے شکریہ۔ تمام عطیات محفوظ ہیں اور ہماری کمیونٹی کی فلاح و بہبود اور ثقافتی اقدامات کو بڑھانے کے لیے استعمال ہوں گے۔",
+    footer_location: "تمام تقریبات Imam Ali Center Milano، Via Valsolda 21، Milano، Italy میں ہیں",
+    prayer_eyebrow: "نماز کے اوقات",
+    prayer_title: "روزانہ نماز کے اوقات — میلان",
+    prayer_subtitle: "شیعہ (جعفری) طریقہ حساب آج کے لیے",
+    fajr: "فجر",
+    sunrise: "طلوع فجر",
+    dhuhr: "ظہر",
+    asr: "عصر",
+    maghrib: "مغرب",
+    isha: "عشاء",
+    prayer_info: "نماز کے اوقات میلان، اٹلی کے لیے شیعہ (جعفری) طریقے سے حساب کیے گئے ہیں۔ اوقات روزانہ اپ ڈیٹ ہوتے ہیں۔"
+  }
+};
+
+function setLanguage(lang){
+  const dict = translations[lang];
+  if(!dict) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    const key = el.getAttribute('data-i18n');
+    if(dict[key] !== undefined){
+      el.innerHTML = dict[key];
+    }
+  });
+
+  document.documentElement.setAttribute('lang', lang === 'ur' ? 'ur' : lang);
+  document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
+
+  document.querySelectorAll('.lang-switch button').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  try{ localStorage.setItem('imamia_lang', lang); }catch(e){}
+}
+
+document.querySelectorAll('.lang-switch button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    setLanguage(btn.getAttribute('data-lang'));
+  });
+});
+
+let savedLang = 'it';
+try{ savedLang = localStorage.getItem('imamia_lang') || 'it'; }catch(e){}
+setLanguage(savedLang);
+
+// Quote carousel functionality
+let currentQuoteIndex = 0;
+const totalQuotes = 6;
+const quoteInterval = 6000; // Change quote every 6 seconds
+
+function showQuote(n){
+  const slides = document.querySelectorAll('.quote-slide');
+  const dots = document.querySelectorAll('.dot');
+  
+  if(n >= totalQuotes) currentQuoteIndex = 0;
+  if(n < 0) currentQuoteIndex = totalQuotes - 1;
+  
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  if(slides[currentQuoteIndex]) slides[currentQuoteIndex].classList.add('active');
+  if(dots[currentQuoteIndex]) dots[currentQuoteIndex].classList.add('active');
+}
+
+function currentQuote(n){
+  currentQuoteIndex = n;
+  showQuote(currentQuoteIndex);
+}
+
+// Auto-advance quotes
+setInterval(() => {
+  currentQuoteIndex++;
+  showQuote(currentQuoteIndex);
+}, quoteInterval);
+
+// Initialize first quote
+showQuote(currentQuoteIndex);
+
+// FAQ accordion functionality
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', function(){
+    const answer = this.nextElementSibling;
+    const isActive = this.classList.contains('active');
+    
+    // Close all other FAQs
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.classList.remove('active');
+      q.nextElementSibling.classList.remove('active');
+    });
+    
+    // Toggle current FAQ
+    if(!isActive){
+      this.classList.add('active');
+      answer.classList.add('active');
+    }
+  });
+});
+
+// Fetch and display Shia prayer times for Milan
+async function fetchPrayerTimes(){
+  try{
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
+    
+    const response = await fetch(
+      `https://api.aladhan.com/v1/timings/${dateStr}?latitude=45.4641&longitude=9.1900&method=16`
+      // method=16 is Jafari (Shia), coordinates are Milan (45.4641°N, 9.1900°E)
+    );
+    const data = await response.json();
+    const timings = data.data.timings;
+    
+    document.getElementById('time-fajr').textContent = timings.Fajr.substring(0, 5);
+    document.getElementById('time-sunrise').textContent = timings.Sunrise.substring(0, 5);
+    document.getElementById('time-dhuhr').textContent = timings.Dhuhr.substring(0, 5);
+    document.getElementById('time-asr').textContent = timings.Asr.substring(0, 5);
+    document.getElementById('time-maghrib').textContent = timings.Maghrib.substring(0, 5);
+    document.getElementById('time-isha').textContent = timings.Isha.substring(0, 5);
+  }catch(err){
+    console.error('Error fetching prayer times:', err);
+  }
+}
+
+// Call on page load
+fetchPrayerTimes();
+
+// Refresh every hour
+setInterval(fetchPrayerTimes, 3600000);
+
+// Donation Modal Functionality
+const donationModal = document.getElementById('donationModal');
+const donationNavBtn = document.getElementById('donateNavBtn');
+const donationClose = document.getElementById('donationClose');
+
+donationNavBtn.addEventListener('click', function(){
+  donationModal.classList.add('active');
+});
+
+donationClose.addEventListener('click', function(){
+  donationModal.classList.remove('active');
+});
+
+donationModal.addEventListener('click', function(e){
+  if(e.target === donationModal){
+    donationModal.classList.remove('active');
+  }
+});
+
+// Copy to Clipboard Function
+function copyToClipboard(elementId, button){
+  const element = document.getElementById(elementId);
+  const text = element.textContent.trim();
+  
+  // Try modern clipboard API first
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showCopyFeedback(button);
+    }).catch(function(){
+      // Fallback if clipboard API fails
+      fallbackCopyToClipboard(text, button);
+    });
+  } else {
+    // Fallback for older browsers/mobile
+    fallbackCopyToClipboard(text, button);
+  }
+}
+
+function fallbackCopyToClipboard(text, button){
+  // Create a temporary textarea
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  
+  // Select and copy
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    showCopyFeedback(button);
+  } catch(err) {
+    console.error('Fallback copy failed:', err);
+    alert('Could not copy. Please try again.');
+  }
+  
+  // Remove temporary textarea
+  document.body.removeChild(textarea);
+}
+
+function showCopyFeedback(button){
+  const originalText = button.textContent;
+  button.textContent = '✓ Copied!';
+  button.classList.add('copied');
+  
+  setTimeout(function(){
+    button.textContent = originalText;
+    button.classList.remove('copied');
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
