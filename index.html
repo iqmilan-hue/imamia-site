@@ -451,8 +451,8 @@
   html[dir="rtl"] h3{font-family:'Noto Nastaliq Urdu', serif;}
   html[dir="rtl"] .eyebrow{letter-spacing:0.05em;}
   html[dir="rtl"] .lang-switch{margin-left:0;margin-right:2rem;}
-  html[dir="rtl"] .event .date,
-  html[dir="rtl"] .event .meta{direction:ltr;text-align:right;}
+  html[dir="rtl"] .event .date{direction:ltr;text-align:right;}
+  html[dir="rtl"] .event .meta{text-align:right;}
 
   @media (max-width: 760px){
     /* Hero Section - Reduce for mobile */
@@ -939,6 +939,76 @@
     margin-top:1.2rem;
   }
 
+  /* ---------- Next event, speakers, past events ---------- */
+  .event-list.upcoming{border-top:none;}
+  .event.featured{
+    border:1px solid var(--brass);
+    border-radius:10px;
+    padding:2rem 1.8rem;
+    background:linear-gradient(135deg, rgba(184,147,90,0.12) 0%, rgba(16,24,43,0.55) 100%);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .event-badge{
+    display:inline-block;
+    background:var(--brass);
+    color:var(--night-deep);
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-weight:600;
+    padding:0.25rem 0.7rem;
+    border-radius:3px;
+    margin-bottom:0.8rem;
+  }
+  .speakers{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:1.4rem;
+    margin-top:1.6rem;
+    max-width:560px;
+  }
+  .speakers.two{grid-template-columns:repeat(2, minmax(0, 1fr));max-width:380px;}
+  .speaker{margin:0;text-align:center;}
+  .speaker img{
+    display:block;
+    width:112px;
+    height:112px;
+    margin:0 auto 0.7rem;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:50% 25%;
+    border:3px solid var(--brass);
+    box-shadow:0 0 0 4px rgba(184,147,90,0.18), 0 8px 20px rgba(0,0,0,0.4);
+    background:var(--night);
+  }
+  .speaker.main img{width:128px;height:128px;border-color:var(--brass-light);}
+  .speaker figcaption{display:flex;flex-direction:column;gap:0.15rem;}
+  .speaker .sp-role{color:var(--brass-light);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;}
+  .speaker .sp-name{color:var(--parchment);font-family:'Amiri', serif;font-size:1.08rem;line-height:1.3;}
+  .past-title{
+    color:var(--brass-light);
+    text-align:center;
+    font-size:1.5rem;
+    max-width:800px;
+    margin:4rem auto 1rem;
+  }
+  .event-list.past .event{opacity:0.82;}
+  .event-list.past .speaker img{width:84px;height:84px;}
+  html[dir="rtl"] .event-badge{letter-spacing:0;}
+  html[dir="rtl"] .speaker .sp-role{letter-spacing:0;text-transform:none;font-size:0.8rem;}
+  html[dir="rtl"] .speaker .sp-name{font-family:'Noto Nastaliq Urdu', serif;font-size:0.95rem;line-height:2;}
+
+  @media (max-width: 760px){
+    .event.featured{padding:1.2rem 1rem;}
+    .speakers{gap:0.8rem;}
+    .speaker img{width:76px;height:76px;}
+    .speaker.main img{width:86px;height:86px;}
+    .speaker .sp-name{font-size:0.9rem;}
+    .speaker .sp-role{font-size:0.62rem;}
+    .event-list.past .speaker img{width:64px;height:64px;}
+    .past-title{font-size:1.2rem;margin-top:2.6rem;}
+  }
+
 </style>
 </head>
 <body>
@@ -1060,17 +1130,62 @@
     <h2 data-i18n="events_title">Upcoming events</h2>
     <p data-i18n="events_subtitle">Stay informed about our gatherings, majalis, and community programs.</p>
   </div>
-  <div class="event-list">
-    <div class="event">
-      <div class="date"><span class="day">26</span><span class="month">Jul</span></div>
+  <div class="event-list upcoming">
+    <div class="event featured">
+      <div class="date"><span class="day">20</span><span class="month" data-i18n="m_dec">Dec</span></div>
       <div>
-        <h3 data-i18n="event1_title">Majlis Aza</h3>
-        <div class="meta" data-i18n="event1_meta">After Zohrain until 4:00 PM · Via Valsolda 21, Milano, Italy</div>
-        <p data-i18n="event1_desc">Majlis Aza featuring renowned Islamic scholar Aalima Syeda Khanum Tayyaba Bukhari (Islamabad). This event is for women (Mominat) and punctuality is recommended. Niaz of Imam Hussain will be served at the end. Contact: +39 366 597 0703 - +39 353 372 1575</p>
+        <span class="event-badge" data-i18n="badge_next">Next event</span>
+        <h3 data-i18n="ev_dec20_title">Jashn-e-Molood-e-Kaaba — Birth of Imam Ali (AS)</h3>
+        <div class="meta" data-i18n="ev_dec20_meta">Sunday 20 December 2026 · 2:00 PM · Imam Ali Center, Via Valsolda 21, Milano</div>
+        <p data-i18n="ev_dec20_desc">A celebration of the blessed birth of the Commander of the Faithful, Imam Ali ibn Abi Talib (AS), born inside the Holy Kaaba. Main address by Allama Kumail Mehdavi, with Zakir-e-Ahlebait Syed Najam Abbas (Bergamo) and Khateeb-e-Aal-e-Muhammad Syed Qasim Raza. A separate space (purdah) is arranged for women. Please arrive on time. Contact: +39 366 597 0703 · +39 353 372 1575</p>
+        <div class="speakers">
+          <figure class="speaker main">
+            <img src="images/events/kumail-mehdavi.jpg" alt="Allama Kumail Mehdavi" loading="lazy">
+            <figcaption><span class="sp-role" data-i18n="sp_role_main">Main address</span><span class="sp-name" data-i18n="sp_kumail">Allama Kumail Mehdavi</span></figcaption>
+          </figure>
+          <figure class="speaker">
+            <img src="images/events/najam-abbas.jpg" alt="Syed Najam Abbas" loading="lazy">
+            <figcaption><span class="sp-role" data-i18n="sp_role_zakir_bg">Zakir-e-Ahlebait · Bergamo</span><span class="sp-name" data-i18n="sp_najam">Syed Najam Abbas</span></figcaption>
+          </figure>
+          <figure class="speaker">
+            <img src="images/events/qasim-raza.jpg" alt="Syed Qasim Raza" loading="lazy">
+            <figcaption><span class="sp-role" data-i18n="sp_role_khateeb">Khateeb-e-Aal-e-Muhammad</span><span class="sp-name" data-i18n="sp_qasim">Syed Qasim Raza</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="past-title" data-i18n="past_title">Past events</h3>
+  <div class="event-list past">
+    <div class="event">
+      <div class="date"><span class="day">25</span><span class="month" data-i18n="m_oct">Oct</span></div>
+      <div>
+        <h3 data-i18n="ev_oct25_title">Majlis-e-Aza — Martyrdom of Bibi Fatima Zahra (SA)</h3>
+        <div class="meta" data-i18n="ev_oct25_meta">Sunday 25 October 2026 · 3:00 PM · Imam Ali Center, Via Valsolda 21, Milano</div>
+        <p data-i18n="ev_oct25_desc">Address by Hujjat-ul-Islam wal-Muslimeen Allama Syed Nusrat Abbas Bukhari, with Zakir-e-Ahlebait Syed Mohsin Ali (Milan). Nauha khwan: Tauseef Abbas and Saqlain Abbas; Matmi Sangat Imamia Milano: Salar Hassan Askari (Goga Bhai). Thank you to everyone who attended.</p>
+        <div class="speakers two">
+          <figure class="speaker">
+            <img src="images/events/nusrat-abbas-bukhari.jpg" alt="Allama Syed Nusrat Abbas Bukhari" loading="lazy">
+            <figcaption><span class="sp-role" data-i18n="sp_role_main">Main address</span><span class="sp-name" data-i18n="sp_nusrat">Allama Syed Nusrat Abbas Bukhari</span></figcaption>
+          </figure>
+          <figure class="speaker">
+            <img src="images/events/mohsin-ali.jpg" alt="Syed Mohsin Ali" loading="lazy">
+            <figcaption><span class="sp-role" data-i18n="sp_role_zakir_mi">Zakir-e-Ahlebait · Milan</span><span class="sp-name" data-i18n="sp_mohsin">Syed Mohsin Ali</span></figcaption>
+          </figure>
+        </div>
       </div>
     </div>
     <div class="event">
-      <div class="date"><span class="day">15</span><span class="month">Aug</span></div>
+      <div class="date"><span class="day">20</span><span class="month" data-i18n="m_sep">Sep</span></div>
+      <div>
+        <h3 data-i18n="event3_title">Special Children's Event</h3>
+        <div class="meta" data-i18n="event3_meta">12:30 PM · Imamia Center</div>
+        <p data-i18n="event3_desc">Join us for a fun-filled day dedicated to the youngest members of our community! The event will include exciting games, an interactive question and answer session, and a delicious outdoor barbecue.</p>
+      </div>
+    </div>
+    <div class="event">
+      <div class="date"><span class="day">15</span><span class="month" data-i18n="m_aug">Aug</span></div>
       <div>
         <h3 data-i18n="event2_title">Majlis & Chehlum of Imam Hussain (AS)</h3>
         <div class="meta" data-i18n="event2_meta">4:30 PM · Imamia Center</div>
@@ -1078,11 +1193,11 @@
       </div>
     </div>
     <div class="event">
-      <div class="date"><span class="day">20</span><span class="month">Sep</span></div>
+      <div class="date"><span class="day">26</span><span class="month" data-i18n="m_jul">Jul</span></div>
       <div>
-        <h3 data-i18n="event3_title">Special Children's Event</h3>
-        <div class="meta" data-i18n="event3_meta">12:30 PM · Imamia Center</div>
-        <p data-i18n="event3_desc">Join us for a fun-filled day dedicated to the youngest members of our community! The event will include exciting games, an interactive question and answer session, and a delicious outdoor barbecue.</p>
+        <h3 data-i18n="event1_title">Majlis Aza</h3>
+        <div class="meta" data-i18n="event1_meta">After Zohrain until 4:00 PM · Via Valsolda 21, Milano, Italy</div>
+        <p data-i18n="event1_desc">Majlis Aza featuring renowned Islamic scholar Aalima Syeda Khanum Tayyaba Bukhari (Islamabad). This event is for women (Mominat) and punctuality is recommended. Niaz of Imam Hussain will be served at the end. Contact: +39 366 597 0703 - +39 353 372 1575</p>
       </div>
     </div>
   </div>
@@ -1228,11 +1343,6 @@ const translations = {
     events_eyebrow: "Annunci",
     events_title: "Prossimi eventi",
     events_subtitle: "Resta informato sui nostri incontri, majalis e programmi comunitari.",
-    event_title: "Titolo evento",
-    event1_meta: "19:00 &middot; Sala comunitaria",
-    event2_meta: "18:30 &middot; Centro Imamia",
-    event3_meta: "Tutto il giorno &middot; Sede",
-    event_desc: "Breve descrizione dell'evento — cos'è, per chi è pensato e i dettagli utili ai partecipanti.",
     footer_title: "Contattaci",
     footer_subtitle: "Hai una domanda o vuoi che il tuo evento sia elencato qui?",
     footer_copy: "&copy; 2026 Imamia. Tutti i diritti riservati.",
@@ -1312,6 +1422,28 @@ const translations = {
     event3_title: "Evento Speciale per Bambini",
     event3_meta: "12:30 · Centro Imamia",
     event3_desc: "Unitevi a noi per una giornata all'insegna del divertimento dedicata ai più piccoli della nostra comunità! L'evento includerà giochi entusiasmanti, una sessione interattiva di domande e risposte e un delizioso barbecue all'aperto.",
+    m_jul: "Lug",
+    m_aug: "Ago",
+    m_sep: "Set",
+    m_oct: "Ott",
+    m_dec: "Dic",
+    badge_next: "Prossimo evento",
+    past_title: "Eventi passati",
+    ev_dec20_title: "Jashn-e-Molood-e-Kaaba — Nascita dell'Imam Ali (AS)",
+    ev_dec20_meta: "Domenica 20 dicembre 2026 · ore 14:00 · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_dec20_desc: "Celebrazione per la nascita benedetta del Principe dei Credenti, l'Imam Ali ibn Abi Talib (AS), nato all'interno della Sacra Kaaba. Discorso principale di Allama Kumail Mehdavi, con Zakir-e-Ahlebait Syed Najam Abbas (Bergamo) e Khateeb-e-Aal-e-Muhammad Syed Qasim Raza. Per le donne è previsto uno spazio riservato (purdah). Si prega di essere puntuali. Contatti: +39 366 597 0703 · +39 353 372 1575",
+    ev_oct25_title: "Majlis-e-Aza — Martirio di Bibi Fatima Zahra (SA)",
+    ev_oct25_meta: "Domenica 25 ottobre 2026 · ore 15:00 · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_oct25_desc: "Discorso di Hujjat-ul-Islam wal-Muslimeen Allama Syed Nusrat Abbas Bukhari, con Zakir-e-Ahlebait Syed Mohsin Ali (Milano). Nauha khwan: Tauseef Abbas e Saqlain Abbas; Matmi Sangat Imamia Milano: Salar Hassan Askari (Goga Bhai). Grazie a tutti i fedeli che hanno partecipato.",
+    sp_role_main: "Discorso",
+    sp_role_zakir_bg: "Zakir-e-Ahlebait · Bergamo",
+    sp_role_zakir_mi: "Zakir-e-Ahlebait · Milano",
+    sp_role_khateeb: "Khateeb-e-Aal-e-Muhammad",
+    sp_kumail: "Allama Kumail Mehdavi",
+    sp_najam: "Syed Najam Abbas",
+    sp_qasim: "Syed Qasim Raza",
+    sp_nusrat: "Allama Syed Nusrat Abbas Bukhari",
+    sp_mohsin: "Syed Mohsin Ali",
   },
   en: {
     nav_about: "About",
@@ -1332,11 +1464,6 @@ const translations = {
     events_eyebrow: "Announcements",
     events_title: "Upcoming events",
     events_subtitle: "Stay informed about our gatherings, majalis, and community programs.",
-    event_title: "Event Title Here",
-    event1_meta: "7:00 PM &middot; Community Hall",
-    event2_meta: "6:30 PM &middot; Imamia Center",
-    event3_meta: "All Day &middot; Location",
-    event_desc: "Short description of the event — what it is, who it's for, and any details attendees should know.",
     footer_title: "Get in touch",
     footer_subtitle: "Have a question, or want your event listed here?",
     footer_copy: "&copy; 2026 Imamia. All rights reserved.",
@@ -1406,7 +1533,38 @@ const translations = {
     asr: "Asr",
     maghrib: "Maghrib",
     isha: "Isha",
-    prayer_info: "Prayer times calculated using Shia (Jafari) method for Milan, Italy. Times update daily."
+    prayer_info: "Prayer times calculated using Shia (Jafari) method for Milan, Italy. Times update daily.",
+    event1_title: "Majlis Aza",
+    event1_meta: "After Zohrain until 4:00 PM · Via Valsolda 21, Milano, Italy",
+    event1_desc: "Majlis Aza featuring renowned Islamic scholar Aalima Syeda Khanum Tayyaba Bukhari (Islamabad). This event is for women (Mominat) and punctuality is recommended. Niaz of Imam Hussain will be served at the end. Contact: +39 366 597 0703 - +39 353 372 1575",
+    event2_title: "Majlis & Chehlum of Imam Hussain (AS)",
+    event2_meta: "4:30 PM · Imamia Center",
+    event2_desc: "The Majlis will feature the renowned Islamic scholar Allama Anees Raza Naqvi (from Canada), accompanied by the participation of other eminent scholars.",
+    event3_title: "Special Children's Event",
+    event3_meta: "12:30 PM · Imamia Center",
+    event3_desc: "Join us for a fun-filled day dedicated to the youngest members of our community! The event will include exciting games, an interactive question and answer session, and a delicious outdoor barbecue.",
+    m_jul: "Jul",
+    m_aug: "Aug",
+    m_sep: "Sep",
+    m_oct: "Oct",
+    m_dec: "Dec",
+    badge_next: "Next event",
+    past_title: "Past events",
+    ev_dec20_title: "Jashn-e-Molood-e-Kaaba — Birth of Imam Ali (AS)",
+    ev_dec20_meta: "Sunday 20 December 2026 · 2:00 PM · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_dec20_desc: "A celebration of the blessed birth of the Commander of the Faithful, Imam Ali ibn Abi Talib (AS), born inside the Holy Kaaba. Main address by Allama Kumail Mehdavi, with Zakir-e-Ahlebait Syed Najam Abbas (Bergamo) and Khateeb-e-Aal-e-Muhammad Syed Qasim Raza. A separate space (purdah) is arranged for women. Please arrive on time. Contact: +39 366 597 0703 · +39 353 372 1575",
+    ev_oct25_title: "Majlis-e-Aza — Martyrdom of Bibi Fatima Zahra (SA)",
+    ev_oct25_meta: "Sunday 25 October 2026 · 3:00 PM · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_oct25_desc: "Address by Hujjat-ul-Islam wal-Muslimeen Allama Syed Nusrat Abbas Bukhari, with Zakir-e-Ahlebait Syed Mohsin Ali (Milan). Nauha khwan: Tauseef Abbas and Saqlain Abbas; Matmi Sangat Imamia Milano: Salar Hassan Askari (Goga Bhai). Thank you to everyone who attended.",
+    sp_role_main: "Main address",
+    sp_role_zakir_bg: "Zakir-e-Ahlebait · Bergamo",
+    sp_role_zakir_mi: "Zakir-e-Ahlebait · Milan",
+    sp_role_khateeb: "Khateeb-e-Aal-e-Muhammad",
+    sp_kumail: "Allama Kumail Mehdavi",
+    sp_najam: "Syed Najam Abbas",
+    sp_qasim: "Syed Qasim Raza",
+    sp_nusrat: "Allama Syed Nusrat Abbas Bukhari",
+    sp_mohsin: "Syed Mohsin Ali"
   },
   ur: {
     nav_about: "ہمارے بارے میں",
@@ -1427,11 +1585,6 @@ const translations = {
     events_eyebrow: "اعلانات",
     events_title: "آئندہ تقریبات",
     events_subtitle: "ہماری تقریبات، مجالس اور کمیونٹی پروگراموں سے آگاہ رہیں۔",
-    event_title: "تقریب کا عنوان",
-    event1_meta: "شام 7 بجے &middot; کمیونٹی ہال",
-    event2_meta: "شام 6:30 بجے &middot; امامیہ سینٹر",
-    event3_meta: "پورا دن &middot; مقام",
-    event_desc: "تقریب کی مختصر تفصیل — یہ کیا ہے، کن کے لیے ہے، اور شرکاء کے لیے ضروری تفصیلات۔",
     footer_title: "رابطہ کریں",
     footer_subtitle: "کوئی سوال ہے، یا اپنی تقریب یہاں شامل کروانا چاہتے ہیں؟",
     footer_copy: "&copy; 2026 امامیہ۔ جملہ حقوق محفوظ ہیں۔",
@@ -1511,6 +1664,28 @@ const translations = {
     event3_title: "بچوں کے لیے خصوصی تقریب",
     event3_meta: "12:30 · امامیہ سینٹر",
     event3_desc: "ہماری کمیونٹی کے سب سے چھوٹے اراکین کے لیے ایک مزے اور تفریح کے دن میں شریک ہوں! تقریب میں دلچسپ کھیل، سوالات و جوابات کا انٹرایکٹو سیشن اور بہترین آؤٹ ڈور باربیکیو شامل ہوگی۔",
+    m_jul: "جولائی",
+    m_aug: "اگست",
+    m_sep: "ستمبر",
+    m_oct: "اکتوبر",
+    m_dec: "دسمبر",
+    badge_next: "آئندہ پروگرام",
+    past_title: "گزشتہ پروگرام",
+    ev_dec20_title: "جشنِ مولودِ کعبہ — ولادتِ باسعادت امیرالمومنین حضرت علی علیہ السلام",
+    ev_dec20_meta: "بروز اتوار، 20 دسمبر 2026 · دوپہر 2 بجے · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_dec20_desc: "خانۂ کعبہ میں پیدا ہونے والے امیرالمومنین حضرت علی ابنِ ابی طالب علیہ السلام کی ولادتِ باسعادت کی مناسبت سے جشن۔ خطاب: علامہ کمیل مہدوی؛ ہمراہ ذاکرِ اہلبیتؑ سید نجم عباس (برگامو) اور خطیبِ آلِ محمدؑ سید قاسم رضا۔ خواتین کے لیے پردے میں سماعت کا اہتمام ہے۔ تمام مومنین پابندیِ وقت کے ساتھ شرکت فرمائیں۔ رابطہ: +39 366 597 0703 · +39 353 372 1575",
+    ev_oct25_title: "مجلسِ عزا بسلسلۂ شہادت بی بی سیدہ فاطمۃ الزہرا سلام اللہ علیہا",
+    ev_oct25_meta: "بروز اتوار، 25 اکتوبر 2026 · دوپہر 3 بجے · Imam Ali Center, Via Valsolda 21, Milano",
+    ev_oct25_desc: "خطاب: حجۃ الاسلام والمسلمین علامہ سید نصرت عباس بخاری؛ ہمراہ ذاکرِ اہلبیتؑ سید محسن علی (میلان)۔ نوحہ خواں: توصیف عباس و ثقلین عباس؛ ماتمی سنگت امامیہ میلان: سالار حسن عسکری المعروف گوگا بھائی۔ شرکت کرنے والے تمام مومنین کا شکریہ۔",
+    sp_role_main: "خطاب",
+    sp_role_zakir_bg: "ذاکرِ اہلبیتؑ · برگامو",
+    sp_role_zakir_mi: "ذاکرِ اہلبیتؑ · میلان",
+    sp_role_khateeb: "خطیبِ آلِ محمدؑ",
+    sp_kumail: "علامہ کمیل مہدوی",
+    sp_najam: "سید نجم عباس",
+    sp_qasim: "سید قاسم رضا",
+    sp_nusrat: "علامہ سید نصرت عباس بخاری",
+    sp_mohsin: "سید محسن علی",
   }
 };
 
